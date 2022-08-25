@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    tools:context=".view.ui.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <io.github.florent37.shapeofview.shapes.ArcView
+            android:id="@+id/homeArcView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:shape_arc_height="50dp"
+            app:shape_arc_position="bottom">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/blueGlass">
+
+                <com.slapin.blurview.BlurView
+                    android:id="@+id/homeBlurView"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:bvBlurRadius="12"
+                    app:bvCornerRadius="50dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+
+        </io.github.florent37.shapeofview.shapes.ArcView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1200dp" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

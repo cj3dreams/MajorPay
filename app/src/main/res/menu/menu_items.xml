@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_test"
+        android:title="Главная" />
+    <item
+        android:id="@+id/menu_history"
+        android:icon="@drawable/ic_test"
+        android:title="История" />
+    <item
+        android:enabled="false"
+        android:id="@+id/empty"
+        android:icon="@color/transparent"
+        android:title="" />
+    <item
+        android:id="@+id/menu_reports"
+        android:icon="@drawable/ic_test"
+        android:title="Отчеты" />
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/ic_test"
+        android:title="Профиль" />
+</menu>
