@@ -64,12 +64,8 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
 
     //customView
-//    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
-//    implementation 'no.danielzeller.blurbehindlib:blurbehindlib:1.0.0'
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
-//    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
-//    implementation 'io.alterac.blurkit:blurkit:1.1.0'
     implementation 'io.github.florent37:shapeofview:1.4.7'
-    implementation 'com.revosleap.layout:blurrylayout:2.0.0'
-    implementation("com.github.sergei-lapin:BlurView:1.0.0")
+    implementation 'com.github.sergei-lapin:BlurView:1.0.0'
+    implementation 'com.github.devlight:infinitecycleviewpager:1.0.2'
 }

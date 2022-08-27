@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1925925925925926" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2101851851851852" />
+        <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/drawable/ic_purple_card_200.xml" value="0.33" />
+        <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/drawable/ic_teal_card_200.xml" value="0.22" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/drawable/ic_test.xml" value="0.2101851851851852" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/layout/card_item.xml" value="0.3479212253829322" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/layout/fragment_home.xml" value="0.19" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/layout/fragment_home_bar.xml" value="0.1" />
         <entry key="..\:/X-Lab/zAndroidStudio/MajorPay/app/src/main/res/layout/fragment_home_top.xml" value="0.20260416666666667" />
