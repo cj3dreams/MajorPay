@@ -2,33 +2,61 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
-    android:layout_width="174.49dp"
-    android:layout_height="98.9611dp"
-    android:background="@color/transparent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="20dp"
+    app:cardBackgroundColor="@color/transparent"
     app:cardCornerRadius="20dp"
     app:cardPreventCornerOverlap="true"
-    card_view:cardCornerRadius="6dp"
-    android:elevation="20dp"
+    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView"
     card_view:cardElevation="10">
 
     <RelativeLayout
+        android:layout_gravity="center"
         android:id="@+id/itemCardClick"
+        android:layout_width="401.327dp"
+        android:layout_height="227.61053dp"
+        android:background="@color/transparent"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:minWidth="174.49dp"
+        android:minHeight="98.9611dp">
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/itemCardImgViewBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            android:fontFamily="@font/credit_card_font"
+            android:text="2222 2222 5555 8965"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="26dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="100$"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="36dp"
+            android:layout_margin="26dp"
+            android:scaleType="center" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

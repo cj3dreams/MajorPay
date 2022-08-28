@@ -7,17 +7,19 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/mainTopBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/blueGlass">
+        android:layout_height="80dp"
+        android:background="@color/transparent">
 
-        <com.slapin.blurview.BlurView
+        <io.alterac.blurkit.BlurLayout
             android:id="@+id/homeBlurView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:bvBlurRadius="4"
-            app:bvCornerRadius="0dp" />
+            app:blk_blurRadius="12"
+            app:blk_downscaleFactor="0.12"
+            app:blk_fps="60" />
 
     </RelativeLayout>
 
@@ -63,7 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mainColor"
-            android:src="@drawable/ic_test"
+            android:src="@drawable/ic_plus"
+            app:maxImageSize="40dp"
             app:borderWidth="0dp"
             app:layout_anchor="@id/mainBottomAppBar" />
 

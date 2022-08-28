@@ -66,6 +66,9 @@ dependencies {
     //customView
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
     implementation 'io.github.florent37:shapeofview:1.4.7'
-    implementation 'com.github.sergei-lapin:BlurView:1.0.0'
+//    implementation 'com.github.sergei-lapin:BlurView:1.0.0'
     implementation 'com.github.devlight:infinitecycleviewpager:1.0.2'
+    implementation("com.tbuonomo:dotsindicator:4.3")
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'io.alterac.blurkit:blurkit:1.1.0'
 }

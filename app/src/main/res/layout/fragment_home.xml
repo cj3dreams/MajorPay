@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <io.github.florent37.shapeofview.shapes.ArcView
             android:id="@+id/homeArcView"
             android:layout_width="match_parent"
@@ -22,27 +23,43 @@
             <RelativeLayout
                 android:background="@color/blueGlass"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
->
+                android:layout_height="match_parent">
 
-                <com.slapin.blurview.BlurView
+                <io.alterac.blurkit.BlurLayout
                     android:id="@+id/homeBlurView"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    app:bvBlurRadius="5"
-                    app:bvCornerRadius="5dp" />
+                    android:layout_height="330dp"
+                    app:blk_blurRadius="12"
+                    app:blk_downscaleFactor="0.12"
+                    app:blk_fps="60" />
 
                 <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
+                    android:layout_marginTop="80dp"
                     android:id="@+id/homeHorizonInfCycleViewPager"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
-                    app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
                     app:icvp_center_page_scale_offset="30dp"
+                    app:icvp_interpolator="@android:anim/linear_interpolator"
                     app:icvp_max_page_scale="0.8"
                     app:icvp_medium_scaled="true"
                     app:icvp_min_page_scale="0.5"
                     app:icvp_min_page_scale_offset="5dp"
-                    app:icvp_scroll_duration="500"/>
+                    app:icvp_scroll_duration="350" />
+
+                <com.rd.PageIndicatorView
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/homeHorizonInfCycleViewPager"
+                    android:id="@+id/homeDotsIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:piv_animationType="drop"
+                    app:piv_dynamicCount="false"
+                    app:piv_interactiveAnimation="true"
+                    app:piv_selectedColor="@color/mainColor"
+                    app:piv_unselectedColor="@color/blueGlass"
+                    app:piv_padding="12dp"
+                    app:piv_radius="5dp" />
 
             </RelativeLayout>
 

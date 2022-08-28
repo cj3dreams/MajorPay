@@ -20,6 +20,26 @@
     <font
         app:fontStyle="normal"
         app:fontWeight="400"
-        app:font="@font/bebasneue_bold_t" />
+        app:font="@font/commissioner_medium" />
+    <font
+        app:fontStyle="normal"
+        app:fontWeight="400"
+        app:font="@font/credit_card_font" />
+    <font
+        app:fontStyle="normal"
+        app:fontWeight="400"
+        app:font="@font/roboto_medium" />
+    <font
+        app:fontStyle="normal"
+        app:fontWeight="400"
+        app:font="@font/roboto_bold" />
+    <font
+        app:fontStyle="normal"
+        app:fontWeight="400"
+        app:font="@font/roboto_light" />
+    <font
+        app:fontStyle="normal"
+        app:fontWeight="400"
+        app:font="@font/roboto_regular" />
 
 </font-family>

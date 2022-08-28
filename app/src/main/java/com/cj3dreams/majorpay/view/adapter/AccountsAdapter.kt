@@ -1,8 +1,6 @@
 package com.cj3dreams.majorpay.view.adapter
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +9,16 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.viewpager.widget.PagerAdapter
 import com.cj3dreams.majorpay.R
+import java.util.ArrayList
 
 class AccountsAdapter(private val list: List<Int>, private val context: Context) :
-    PagerAdapter() {
+    PagerAdapter(){
 
-    val listColorTemp = listOf<Int?>(
-        R.drawable.ic_purple_card_200,
-        R.drawable.ic_teal_card_200,
+    private val listColorTemp = listOf<Int?>(
+        R.drawable.card_purple_200,
+        R.drawable.card_teal_200,
         R.color.whiteGray)
+
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
@@ -39,5 +39,6 @@ class AccountsAdapter(private val list: List<Int>, private val context: Context)
     }
 
     override fun getCount() = list.size
+
 
 }
