@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomFrame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_for_bottom_sheet_layout"
+    android:backgroundTint="@color/white"
+    android:paddingTop="26dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transactionRW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="26dp"
+        android:background="@color/whiteGray"
+        android:overScrollMode="never" />
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/transactionRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="26dp">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:id="@+id/transactionLogoRl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:padding="20sp">
+
+            <ImageView
+                android:id="@+id/transactionLogoImgView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                tools:src="@mipmap/tcell" />
+
+            <TextView
+                android:id="@+id/transactionLogoTx"
+                android:fontFamily="@font/bebasneue_bold_t"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_toRightOf="@+id/transactionLogoImgView"
+                android:gravity="center"
+                android:textSize="32sp"
+                tools:text="Оплата Tcell" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/transactionNumberLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transactionLogoRl"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/transactionNumberTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/bebasneue_bold_t"
+                android:text="ТЕЛ"
+                android:textColor="@color/mainColor"
+                android:textSize="32sp" />
+
+            <EditText
+                android:id="@+id/transactionNumberEdTx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/bebasneue_bold_t"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:textColor="#4CAF50"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/transactionAmountLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transactionNumberLL"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/transactionAmountTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/bebasneue_bold_t"
+                android:text="USD"
+                android:textColor="@color/mainColor"
+                android:textSize="32sp" />
+
+            <EditText
+                android:id="@+id/transactionAmountEdTx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/bebasneue_bold_t"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:textColor="#4CAF50"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transactionAmountLL"
+            android:layout_marginTop="26dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/transactionBtnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/whiteGray"
+                android:padding="8dp"
+                android:text="Отмена"
+                android:textColor="@color/black"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/transactionBtnOk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/mainColor"
+                android:padding="8dp"
+                android:text="Оплатить"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

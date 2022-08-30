@@ -24,6 +24,7 @@
     </RelativeLayout>
 
     <androidx.fragment.app.FragmentContainerView
+
         android:id="@+id/mainFrgView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -56,12 +57,13 @@
                 app:abb_indicatorMargin="16dp"
                 app:abb_selectedIndex="0"
                 app:abb_selectedTabType="text"
+                app:abb_rippleEnabled="true"
                 app:abb_tabs="@menu/menu_items" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/mainFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mainColor"

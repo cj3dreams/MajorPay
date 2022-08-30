@@ -13,6 +13,7 @@
 
 
         <io.github.florent37.shapeofview.shapes.ArcView
+            android:focusableInTouchMode="true"
             android:id="@+id/homeArcView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,9 +67,15 @@
 
         </io.github.florent37.shapeofview.shapes.ArcView>
 
-        <View
+        <androidx.recyclerview.widget.RecyclerView
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:id="@+id/homeHistoryRW"
+            android:layout_marginHorizontal="5dp"
+            android:layout_below="@+id/homeArcView"
             android:layout_width="match_parent"
-            android:layout_height="1200dp" />
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

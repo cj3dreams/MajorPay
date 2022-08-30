@@ -63,6 +63,11 @@ dependencies {
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
 
+    //jetpack
+    implementation "androidx.fragment:fragment-ktx:1.5.2"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+
     //customView
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
     implementation 'io.github.florent37:shapeofview:1.4.7'

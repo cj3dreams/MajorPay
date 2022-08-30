@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cj3dreams.majorpay.widget.SquareRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_margin="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tItemClick"
+        android:background="@color/blueGlass"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackgroundBorderless"
+        app:cardCornerRadius="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPaddingBottom="0dp"
+        android:elevation="2dp"
+        card_view:cardCornerRadius="6dp"
+        card_view:cardElevation="@dimen/cardview_default_elevation">
+
+        <RelativeLayout
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:scaleType="fitCenter"
+                android:id="@+id/tItemImgView"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_profile" />
+
+            <TextView
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:id="@+id/tItemTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tItemImgView"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                tools:text="@string/app_name"
+                android:textSize="14sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</com.cj3dreams.majorpay.widget.SquareRelativeLayout>
+

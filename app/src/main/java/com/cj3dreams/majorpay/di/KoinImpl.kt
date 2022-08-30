@@ -8,6 +8,7 @@ import com.cj3dreams.majorpay.source.local.LocalSourceImpl
 import com.cj3dreams.majorpay.source.local.WalletDao
 import com.cj3dreams.majorpay.source.remote.RemoteApiRequest
 import com.cj3dreams.majorpay.source.remote.RemoteSourceImpl
+import com.cj3dreams.majorpay.utils.AppConstants.BASE_URL
 import com.cj3dreams.majorpay.vm.HomeViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,8 +17,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-const val BASE_URL = "https://parseapi.back4app.com"
 
 val networkModule = module {
     fun <Api> provideRetrofit(api: Class<Api>) =
@@ -39,6 +38,7 @@ val dataBase = module {
     fun provideDataBase(application: Application) =
         Room.databaseBuilder(application, AppDb::class.java, "AppDb")
             .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
 
     fun provideDao(database: AppDb) = database.walletDao()
