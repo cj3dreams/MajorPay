@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_margin="5dp"
             android:padding="20sp">
 
             <ImageView
@@ -79,6 +78,7 @@
                 android:fontFamily="@font/bebasneue_bold_t"
                 android:hint="0"
                 android:inputType="numberDecimal"
+                android:digits="0123456789"
                 android:maxLength="10"
                 android:textColor="#4CAF50"
                 android:textSize="32sp" />
@@ -104,6 +104,7 @@
                 android:textSize="32sp" />
 
             <EditText
+                android:digits="0123456789"
                 android:id="@+id/transactionAmountEdTx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/transactionAmountLL"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton

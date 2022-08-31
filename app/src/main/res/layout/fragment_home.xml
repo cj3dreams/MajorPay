@@ -34,11 +34,18 @@
                     app:blk_downscaleFactor="0.12"
                     app:blk_fps="60" />
 
+                <ProgressBar
+                    android:id="@+id/homeProgressBar"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/mainColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
                 <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
-                    android:layout_marginTop="80dp"
                     android:id="@+id/homeHorizonInfCycleViewPager"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
+                    android:layout_marginTop="80dp"
                     app:icvp_center_page_scale_offset="30dp"
                     app:icvp_interpolator="@android:anim/linear_interpolator"
                     app:icvp_max_page_scale="0.8"
@@ -70,7 +77,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:overScrollMode="never"
             android:nestedScrollingEnabled="false"
-            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_marginBottom="57dp"
             android:id="@+id/homeHistoryRW"
             android:layout_marginHorizontal="5dp"
             android:layout_below="@+id/homeArcView"

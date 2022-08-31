@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-android:gravity="center_vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
         android:id="@+id/hItemImgView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:scaleType="centerInside"/>
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:scaleType="centerInside" />
 
     <TextView
-        android:gravity="center"
-        android:layout_toEndOf="@+id/hItemImgView"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:layout_marginStart="10dp"
         android:id="@+id/hItemNameTx"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"/>
+        android:layout_height="36dp"
+        android:layout_toEndOf="@+id/hItemImgView"
+        android:gravity="center" />
 
     <TextView
+        android:textSize="16sp"
         android:gravity="top"
         android:layout_alignParentEnd="true"
         android:id="@+id/hItemAmountTx"
@@ -27,13 +32,12 @@ android:gravity="center_vertical"
         android:layout_height="24dp"/>
 
     <TextView
+        android:textSize="16sp"
         android:layout_below="@+id/hItemAmountTx"
         android:gravity="bottom"
         android:layout_alignParentEnd="true"
         android:id="@+id/hItemDateTx"
         android:layout_width="wrap_content"
         android:layout_height="24dp"/>
-
-
 
 </RelativeLayout>

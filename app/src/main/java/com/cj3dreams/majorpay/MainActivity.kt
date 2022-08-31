@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
-import com.cj3dreams.majorpay.view.ui.HistoryFragment
-import com.cj3dreams.majorpay.view.ui.HomeFragment
-import com.cj3dreams.majorpay.view.ui.TransactionRoundedBottomSheetDialogFragment
+import com.cj3dreams.majorpay.view.ui.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import nl.joery.animatedbottombar.AnimatedBottomBar
@@ -16,12 +14,13 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListen
     private lateinit var animatedBottomBar: AnimatedBottomBar
     private lateinit var fab: FloatingActionButton
     private lateinit var transactionRoundedBottomSheetDialogFragment: TransactionRoundedBottomSheetDialogFragment
+    lateinit var topBar: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supp(HomeFragment())
+        changeFrg(HomeFragment())
 
         with(window){
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -29,6 +28,8 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListen
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         }
+
+        topBar = findViewById(R.id.mainTopBar)
         transactionRoundedBottomSheetDialogFragment = TransactionRoundedBottomSheetDialogFragment()
         fab = findViewById(R.id.mainFab)
         fab.setOnClickListener {
@@ -43,13 +44,15 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListen
 
         if (newTab.id == lastTab?.id) return false
         when(newTab.id){
-            R.id.menu_home -> supp(HomeFragment())
-            R.id.menu_history -> supp(HistoryFragment())
+            R.id.menu_home -> changeFrg(HomeFragment())
+            R.id.menu_history -> changeFrg(HistoryFragment())
+            R.id.menu_reports -> changeFrg(ReportsFragment())
+            R.id.menu_profile -> changeFrg(ProfileFragment())
         }
         return true
     }
 
-    fun supp(fragment: Fragment){
+    private fun changeFrg(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrgView, fragment)
             .commit()

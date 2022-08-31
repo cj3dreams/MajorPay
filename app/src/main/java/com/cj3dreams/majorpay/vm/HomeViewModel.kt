@@ -15,7 +15,7 @@ class HomeViewModel(private val dataRepository: DataRepositoryImpl): ViewModel()
     val liveDbCard: MutableLiveData<List<com.cj3dreams.majorpay.model.card.Result>> = MutableLiveData()
     val liveDbHistory: MutableLiveData<List<Result>> = MutableLiveData()
     var errorMessage: MutableLiveData<String> = MutableLiveData()
-    var isDbEmpty: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isDbEmpty: MutableLiveData<Boolean> = MutableLiveData()
     var sizeOfDb: MutableLiveData<Int> = MutableLiveData(0)
 
     var isSuccessUpdateCard: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -35,6 +35,8 @@ class HomeViewModel(private val dataRepository: DataRepositoryImpl): ViewModel()
         viewModelScope.launch {
             getAllCardsUseCaseFromLocal.invoke().collect { values ->
                 liveDbCard.value = values
+                if(!values.isNullOrEmpty()) isDbEmpty.postValue(false)
+                else isDbEmpty.postValue(true)
             }
         }
 
@@ -47,8 +49,9 @@ class HomeViewModel(private val dataRepository: DataRepositoryImpl): ViewModel()
 
     fun getAllCards() = viewModelScope.launch(Dispatchers.IO) {
         when (val dataResult = getAllCardsUseCase.invoke()) {
-            is ResultResponse.Success -> saveAllCardsToLocalUseCase.invoke(dataResult.data)
-            is ResultResponse.Error -> {errorMessage.postValue(dataResult.exception.message)}
+            is ResultResponse.Success ->
+                saveAllCardsToLocalUseCase.invoke(dataResult.data)
+            is ResultResponse.Error -> errorMessage.postValue(dataResult.exception.message)
         }
     }
 

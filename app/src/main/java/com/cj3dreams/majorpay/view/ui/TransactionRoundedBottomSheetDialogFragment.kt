@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cj3dreams.majorpay.MainActivity
@@ -23,6 +21,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransactionRoundedBottomSheetDialogFragment: BottomSheetDialogFragment(), View.OnClickListener{
@@ -108,13 +109,17 @@ class TransactionRoundedBottomSheetDialogFragment: BottomSheetDialogFragment(), 
                 homeViewModel.outgoingUpdateCard(0,"Yb9MrheUom",
                     transactionAmountEdTx.text.toString().toInt())
                 {
-                    dismiss().apply {
+                    if (it) dismiss().apply {
                         //Временное решение проблемы :)
-                        startActivity(Intent(requireActivity(), MainActivity::class.java)
+                        val act = activity as MainActivity
+                        startActivity(Intent(act, MainActivity::class.java)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-                        requireActivity().overridePendingTransition(0, 0)
+                        act.overridePendingTransition(0, 0)
                         //Временное решение проблемы :(
+                    }else lifecycleScope.launch(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Ошибка сети!", Toast.LENGTH_SHORT).show()
+                        cancel()
                     }
                 }
             }

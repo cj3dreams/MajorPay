@@ -9,6 +9,7 @@ import com.cj3dreams.majorpay.source.local.WalletDao
 import com.cj3dreams.majorpay.source.remote.RemoteApiRequest
 import com.cj3dreams.majorpay.source.remote.RemoteSourceImpl
 import com.cj3dreams.majorpay.utils.AppConstants.BASE_URL
+import com.cj3dreams.majorpay.vm.HistoryViewModel
 import com.cj3dreams.majorpay.vm.HomeViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -54,5 +55,10 @@ val dataBase = module {
     single { provideDataRepository(get(), get()) }
     viewModel {
         HomeViewModel(get())
+    }
+}
+val historyViewModel = module {
+    viewModel {
+        HistoryViewModel(get())
     }
 }

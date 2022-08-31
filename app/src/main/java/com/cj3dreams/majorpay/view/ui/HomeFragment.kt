@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -14,6 +15,7 @@ import com.cj3dreams.majorpay.view.adapter.AccountsAdapter
 import com.cj3dreams.majorpay.view.adapter.HistoryAdapter
 import com.cj3dreams.majorpay.vm.HomeViewModel
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
+import com.google.android.material.snackbar.Snackbar
 import com.rd.PageIndicatorView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +23,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
     private lateinit var dotsIndicator: PageIndicatorView
     private lateinit var historyRecyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
     private val homeViewModel: HomeViewModel by viewModel()
 
     private var previousPage = 0
@@ -44,6 +47,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         horizontalInfiniteCycleViewPager = view.findViewById(R.id.homeHorizonInfCycleViewPager)
         dotsIndicator = view.findViewById(R.id.homeDotsIndicator)
         historyRecyclerView = view.findViewById(R.id.homeHistoryRW)
+        progressBar = view.findViewById(R.id.homeProgressBar)
 
         return view
     }
@@ -51,11 +55,25 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeViewModel.isDbEmpty.observe(viewLifecycleOwner, { isDbEmpty ->
+            if (isDbEmpty) {
+                homeViewModel.errorMessage.observe(viewLifecycleOwner, { errorMsg ->
+                    if (!errorMsg.isNullOrEmpty()) Snackbar.make(requireView(), "Проверьте соединение, офлайн просмотр недоступен, требуется первое подключение", 1500).show()
+                })
+            }else {
+                homeViewModel.errorMessage.observe(viewLifecycleOwner, { errorMsg ->
+                    if (!errorMsg.isNullOrEmpty()) Snackbar.make(requireView(), "Офлайн просмотр, операции недоступны", 1500).show()
+                })
+                homeViewModel.isDbEmpty.removeObservers(viewLifecycleOwner)
+                homeViewModel.errorMessage.removeObservers(viewLifecycleOwner)
+            }
+        })
+
         homeViewModel.liveDbCard.observe(viewLifecycleOwner, { db ->
             horizontalInfiniteCycleViewPager.adapter =
                 AccountsAdapter(db, requireContext(), this)
 
-            if(db.isNotEmpty()) mSize = db.size
+            if(db.isNotEmpty()) mSize = db.size.apply { progressBar.visibility = View.GONE }
             dotsIndicator.count = mSize
 
             horizontalInfiniteCycleViewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
