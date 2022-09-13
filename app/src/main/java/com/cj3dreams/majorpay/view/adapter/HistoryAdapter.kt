@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -18,10 +20,11 @@ import java.util.*
 
 class HistoryAdapter(
     private val context: Context,
-    private val list: List<Result>, private val onClickListener: View.OnClickListener
+    private val list: List<Result>, private val onClickListener: View.OnClickListener, private val isShort: Boolean
 ) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val itemHCLick = view.findViewById(R.id.rootItemH) as RelativeLayout
         val itemLogoImgView = view.findViewById(R.id.hItemImgView) as ImageView
         val itemLogoNameTx = view.findViewById(R.id.hItemNameTx) as TextView
         val itemAmountTx = view.findViewById(R.id.hItemAmountTx) as TextView
@@ -34,7 +37,9 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
+
         val itemData = list[position]
+
         if (position%2==1) holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.whiteGray))
 
         holder.itemLogoImgView.setImageResource(itemData.icon.toInt())
@@ -47,6 +52,8 @@ class HistoryAdapter(
             holder.itemAmountTx.text = itemData.amount + " USD"
             holder.itemAmountTx.setTextColor(Color.GREEN)
         }
+        holder.itemHCLick.setOnClickListener(onClickListener)
+        holder.itemHCLick.tag = itemData
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -55,7 +62,7 @@ class HistoryAdapter(
         val yesterday = Calendar.getInstance()
         yesterday.add(Calendar.DATE, -1)
         textView.apply {
-            textView.text =
+            this.text =
                 when (justDate.format(date)) {
                     justDate.format(Calendar.getInstance().time) -> "Сегодня" +
                             SimpleDateFormat(" HH:mm")
@@ -66,7 +73,9 @@ class HistoryAdapter(
                 }
         }
     }
-    override fun getItemCount() = list.size
+    override fun getItemCount() =
+        if(isShort) if(list.size<8) list.size else 8
+        else list.size
 
     private fun convertDate(date: String): Date? = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date)
 }

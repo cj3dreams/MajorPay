@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.cj3dreams.majorpay.view.ui.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -11,9 +12,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListener {
-    private lateinit var animatedBottomBar: AnimatedBottomBar
     private lateinit var fab: FloatingActionButton
-    private lateinit var transactionRoundedBottomSheetDialogFragment: TransactionRoundedBottomSheetDialogFragment
+    lateinit var nameOfFrgTx: TextView
+    lateinit var animatedBottomBar: AnimatedBottomBar
+    lateinit var transactionRoundedBottomSheetDialogFragment: TransactionRoundedBottomSheetDialogFragment
     lateinit var topBar: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +37,10 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListen
         fab.setOnClickListener {
             transactionRoundedBottomSheetDialogFragment.show(supportFragmentManager, "Transaction")
         }
+        nameOfFrgTx = findViewById(R.id.homeNameOfFrgTx)
         animatedBottomBar = findViewById(R.id.mainAnimatedBar)
         animatedBottomBar.setOnTabInterceptListener(this)
+
     }
 
     override fun onTabIntercepted(lastIndex: Int, lastTab: AnimatedBottomBar.Tab?,
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabInterceptListen
         return true
     }
 
-    private fun changeFrg(fragment: Fragment){
+    fun changeFrg(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrgView, fragment)
             .commit()

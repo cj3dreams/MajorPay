@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cj3dreams.majorpay.MainActivity
 import com.cj3dreams.majorpay.R
+import com.cj3dreams.majorpay.model.history.Result
 import com.cj3dreams.majorpay.view.adapter.HistoryAdapter
 import com.cj3dreams.majorpay.vm.HistoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,13 +19,17 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HistoryFragment : Fragment(), View.OnClickListener {
     private lateinit var historyRecyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
+    private lateinit var historyDetailRoundedBottomSheetDialogFragment: HistoryDetailRoundedBottomSheetDialogFragment
     private val historyViewModel: HistoryViewModel by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         historyViewModel.getAllHistory()
         historyViewModel.getAllHistoryFromLocal()
-        (activity as MainActivity).apply { this.topBar.visibility = View.VISIBLE }
+        (activity as MainActivity).apply {
+            topBar.visibility = View.VISIBLE
+            nameOfFrgTx.text = "История"
+        }
     }
 
     override fun onCreateView(
@@ -48,17 +53,19 @@ class HistoryFragment : Fragment(), View.OnClickListener {
 
         historyViewModel.liveDbHistory.observe(viewLifecycleOwner, {
             if (!it.isNullOrEmpty()) progressBar.visibility = View.GONE
-            historyRecyclerView.adapter = HistoryAdapter(requireContext(), it, this)
+            historyRecyclerView.adapter = HistoryAdapter(requireContext(), it, this, false)
         })
 
     }
 
-    override fun onStop() {
-        (activity as MainActivity).apply { this.topBar.visibility = View.GONE }
-        super.onStop()
-    }
 
     override fun onClick(v: View?) {
-
+        when(v!!.id){
+            R.id.rootItemH ->{
+                val tag = v.tag as Result
+                historyDetailRoundedBottomSheetDialogFragment = HistoryDetailRoundedBottomSheetDialogFragment.instanceHistoryDetailFragment(tag)
+                historyDetailRoundedBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "Detail")
+            }
+        }
     }
 }

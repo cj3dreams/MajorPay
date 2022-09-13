@@ -34,12 +34,8 @@ class TransactionAdapter(
         val itemData = list[position]
         holder.itemTextView.text = itemData.name
         holder.itemImgView.setImageResource(itemData.icon)
-        try {
-            holder.itemClick.setOnClickListener(onClickListener)
-            holder.itemClick.tag = itemData
-        }catch (e: Exception){
-            Log.e("AdapterError", e.message.toString())
-        }
+        holder.itemClick.setOnClickListener(onClickListener)
+        holder.itemClick.tag = itemData
     }
 
     override fun getItemCount() = list.size

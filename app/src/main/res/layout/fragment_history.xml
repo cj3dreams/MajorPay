@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ui.HistoryFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/historyRW"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginBottom="?attr/actionBarSize" />
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never"
+        android:layout_marginBottom="150dp" />
 
     <ProgressBar
         android:id="@+id/historyProgressBar"
@@ -18,5 +24,6 @@
         android:indeterminateTint="@color/mainColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
-</RelativeLayout>
+</androidx.core.widget.NestedScrollView>

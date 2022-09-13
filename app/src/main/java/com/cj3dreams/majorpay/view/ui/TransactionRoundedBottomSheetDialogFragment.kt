@@ -1,12 +1,15 @@
 package com.cj3dreams.majorpay.view.ui
 
 import android.app.Dialog
+import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +40,7 @@ class TransactionRoundedBottomSheetDialogFragment: BottomSheetDialogFragment(), 
     private lateinit var transactionBtnOk: MaterialButton
     private lateinit var transactionLogoImgView: ImageView
     private lateinit var transactionLogoTx: TextView
+    private lateinit var progressDialog: ProgressDialog
     private val homeViewModel: HomeViewModel by viewModel()
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
@@ -92,37 +96,59 @@ class TransactionRoundedBottomSheetDialogFragment: BottomSheetDialogFragment(), 
                     }
                 }
             }
-            R.id.transactionBtnCancel -> {
-                transactionNumberEdTx.text.clear()
-                transactionAmountEdTx.text.clear()
-                this.dismiss().apply {
+            R.id.transactionBtnCancel -> this.dismiss()
 
-                }
-            }
             R.id.transactionBtnOk -> {
-                homeViewModel.saveHistory(Result(
-                    transactionAmountEdTx.text.toString(), transactionLogoTx.tag.toString(),
-                    "", transactionLogoImgView.tag.toString(),"",
-                    transactionNumberEdTx.text.toString(), "outgoing",
-                    ""
-                )){}
-                homeViewModel.outgoingUpdateCard(0,"Yb9MrheUom",
-                    transactionAmountEdTx.text.toString().toInt())
-                {
-                    if (it) dismiss().apply {
-                        //Временное решение проблемы :)
-                        val act = activity as MainActivity
-                        startActivity(Intent(act, MainActivity::class.java)
-                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-                        act.overridePendingTransition(0, 0)
-                        //Временное решение проблемы :(
-                    }else lifecycleScope.launch(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Ошибка сети!", Toast.LENGTH_SHORT).show()
-                        cancel()
+                if (!transactionAmountEdTx.text.isNullOrEmpty()
+                    && !transactionNumberEdTx.text.isNullOrEmpty()) {
+                    progressDialog = ProgressDialog(requireContext())
+                    progressDialog.setTitle("Подождите")
+                    progressDialog.setCanceledOnTouchOutside(true)
+                    progressDialog.show()
+                    homeViewModel.saveHistory(
+                        Result(
+                            transactionAmountEdTx.text.toString(), transactionLogoTx.tag.toString(),
+                            "", transactionLogoImgView.tag.toString(), "",
+                            transactionNumberEdTx.text.toString(), "outgoing",
+                            ""
+                        )
+                    ) {
+                        if(it) {
+                            lifecycleScope.launch(Dispatchers.Main) {
+                                progressDialog.dismiss()
+                                Toast.makeText(requireContext(), "Успешно", Toast.LENGTH_SHORT).show()
+                                cancel()
+                            }
+                        }
                     }
-                }
+                    homeViewModel.outgoingUpdateCard(
+                        0, "Yb9MrheUom",
+                        transactionAmountEdTx.text.toString().toInt()
+                    )
+                    {
+                        if (it) dismiss().apply {
+                            //Временое решение проблемы :)
+                            val act = activity as MainActivity
+                            startActivity(
+                                Intent(act, MainActivity::class.java)
+                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            )
+                            act.overridePendingTransition(0, 0)
+                            //Временное решение проблемы :(
+                        } else lifecycleScope.launch(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Ошибка сети!", Toast.LENGTH_SHORT).show()
+                            cancel()
+                        }
+                    }
+                }else Toast.makeText(requireContext(), "Введите данные!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onPause() {
+        transactionNumberEdTx.text.clear()
+        transactionAmountEdTx.text.clear()
+        super.onPause()
     }
 }

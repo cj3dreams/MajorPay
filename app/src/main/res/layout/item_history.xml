@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    android:id="@+id/rootItemH"
     android:padding="10dp">
 
     <ImageView

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="52dp"
+    tools:context=".view.ui.HistoryDetailRoundedBottomSheetDialogFragment">
+
+    <RelativeLayout
+        android:id="@+id/dhLogoRl"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dHLogoImgView"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            tools:src="@mipmap/tcell" />
+
+        <TextView
+            android:id="@+id/dHLogoTx"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toRightOf="@+id/dHLogoImgView"
+            android:fontFamily="@font/bebasneue_bold_t"
+            android:gravity="center"
+            android:textSize="32sp"
+            tools:text="Оплата Tcell" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dHDataL"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/dhLogoRl"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dHNumberTx"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/bebasneue_bold_t"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:text="Номер: " />
+
+        <TextView
+            android:id="@+id/dHAmountTx"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/bebasneue_bold_t"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:text="Сумма: " />
+
+        <TextView
+            android:id="@+id/dHDateTx"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/bebasneue_bold_t"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:text="Дата: " />
+
+        <TextView
+            android:id="@+id/dHPaymentIdTx"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/bebasneue_bold_t"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:text="ID Платежа: " />
+
+
+    </LinearLayout>
+
+    <Button
+        android:backgroundTint="@color/red"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/homeBtnMoreHistory"
+        android:layout_marginTop="26dp"
+        android:text="Закрыть"
+        android:fontFamily="@font/bebasneue_bold_t"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dHDataL" />
+
+</RelativeLayout>
